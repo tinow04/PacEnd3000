@@ -1,24 +1,16 @@
-import express from "express";
+  import express from "express";
 
-const app = express();
+  const app = express();
 
-app.use(express.json()); // Middleware für JSON-Parsing
+  app.use(express.json());
 
-// /api/login POST-Route
-app.post('/api/login', (req, res) => {
-  const { username, password } = req.body;
+  const cors = require('cors');
 
-  // Beispiel-Dummy-Logik
-  if (username === 'testuser' && password === '12345') {
-    res.status(200).json({ message: 'Login erfolgreich!' });
-  } else {
-    res.status(401).json({ message: 'Ungültige Anmeldedaten.' });
-  }
-});
+  app.use(cors({ origin: 'http://localhost:5173'}))
 
-app.get("/", (_, res) => {
-  res.send("Hello express");
-});
+  app.get("/", (_, res) => {
+    res.send("Hello express");
+  });
 
-app.listen(80);
-console.log("Server started at http://localhost:80");
+  app.listen(80);
+  console.log("Server started at http://localhost:80");
