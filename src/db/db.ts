@@ -1,14 +1,10 @@
-import mysql from 'mysql2/promise';
+import { Pool } from 'pg';
 
-export const db = mysql.createPool({
-    host: '',
-    user: '',
-    password: '',
-    database: '',
-    waitForConnections: true,
-    connectionLimit: 10,
-    queueLimit: 0,
-    ssl: {
-        rejectUnauthorized: true // ggf. false bei lokalen Tests
-    }
+export const db = new Pool({
+    host: "localhost",
+    user: "adminPillenschlucker",
+    password: "pille3000",
+    database: "vuedb",
+    port: Number(5432),
+    ssl: false
 });
