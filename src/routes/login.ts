@@ -6,12 +6,13 @@ const router: Router = Router();
 interface User {
     id: number;
     username: string;
+    email: string;
     password: string;
     createdAt: string;
 }
 
 interface LoginRequestBody {
-    username: string;
+    email: string;
     password: string;
 }
 
@@ -19,21 +20,22 @@ router.post('/api/login', async (
     req: Request<unknown, unknown, LoginRequestBody>,
     res: Response
 ): Promise<void> => {
-    const { username, password } = req.body;
+    const { email, password } = req.body;
 
-    console.log(username, password);
+    console.log(email, password);
+    console.log('Host:', process.env.DB_HOST);
 
     // Prüfe ob beide Felder vorhanden sind
-    if (!username || !password) {
-        res.status(400).json({ message: 'Fehlende Daten: Benutzername und Passwort erforderlich.' });
+    if (!email || !password) {
+        res.status(400).json({ message: 'Fehlende Daten: Email und Passwort erforderlich.' });
         return;
     }
 
     try {
         // Datenbankabfrage
         const result = await db.query(
-            'SELECT * FROM users WHERE username = $1 AND password = $2',
-            [username, password]
+            'SELECT * FROM users WHERE email = $1 AND password = $2',
+            [email, password]
         );
 
         // Prüfe ob ein Nutzer gefunden wurde

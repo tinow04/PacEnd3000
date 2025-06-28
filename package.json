@@ -12,11 +12,17 @@
     "format": "prettier --write src/**/*.ts"
   },
   "dependencies": {
-    "express": "latest"
+    "cors": "^2.8.5",
+    "dotenv": "^17.0.0",
+    "express": "latest",
+    "pg": "^8.16.2"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/dotenv": "^6.1.1",
     "@types/express": "latest",
     "@types/node": "latest",
+    "@types/pg": "^8.15.4",
     "@vitest/ui": "latest",
     "eslint": "latest",
     "eslint-config-prettier": "latest",
