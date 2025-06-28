@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "cors": "^2.8.5",
+    "docker": "^1.0.0",
     "dotenv": "^17.0.0",
     "express": "latest",
     "pg": "^8.16.2"
