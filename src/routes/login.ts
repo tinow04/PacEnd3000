@@ -33,7 +33,7 @@ router.post('/api/login', async (
 
     try {
         // Datenbankabfrage
-        const result = await db.query(
+        const result = await db.query<User>(
             'SELECT * FROM users WHERE email = $1 AND password = $2',
             [email, password]
         );
@@ -45,7 +45,7 @@ router.post('/api/login', async (
         }
 
         // Login erfolgreich
-        const user: User = result.rows[0];
+        const user = result.rows[0];
         res.status(200).json({
             message: 'Login erfolgreich',
             user,
