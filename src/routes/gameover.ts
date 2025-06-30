@@ -27,7 +27,10 @@ router.post('/api/gameover', async (req: Request<unknown, unknown, GameOverReque
                 'INSERT INTO scores (player_id, points, ghosts_eaten, levels_won, pills_swallowed) VALUES ($1, $2, $3, $4, $5)',
                 [playerID, points, ghostsEaten, levelsWon, pillsSwallowed]
             );
-
+            await db.query(
+                'UPDATE shop SET coins = coins + $1 WHERE player_id = $2',
+                [points, playerID]
+            );  
             res.status(200).json({ message: 'Daten empfangen und gespeichert.' });
             console.log('Zeile 17', playerID, points, ghostsEaten, levelsWon, pillsSwallowed);
         } catch (error) {
