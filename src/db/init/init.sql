@@ -32,14 +32,15 @@ INSERT INTO scores (player_id, points, ghosts_eaten, levels_won, pills_swallowed
             (4, 1750, 8, 4, 145),
             (5, 1400, 7, 3, 112);
 
-CREATE TABLE coins (
+CREATE TABLE shop (
             player_id INTEGER REFERENCES users(id),
             coins INT
 );
 
-INSERT INTO coins (player_id, coins) VALUES
+INSERT INTO shop (player_id, coins) VALUES
             (1, 1200421),
             (2, 5714),
             (3, 234),
             (4, 8972),
             (5, 5);
+
