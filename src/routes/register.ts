@@ -25,6 +25,7 @@ router.post(
     ): Promise<void> => {
         const { username, email, password } = req.body;
 
+        // Pflichtfelder prüfen
         if (!username || !email || !password) {
             res.status(400).json({
                 message: "Benutzername, Email und Passwort sind erforderlich.",
@@ -33,11 +34,11 @@ router.post(
         }
 
         try {
+            // prüfen, ob schon vorhanden
             const exists = await db.query(
                 "SELECT 1 FROM users WHERE email = $1 OR username = $2",
                 [email, username]
             );
-
             if ((exists.rowCount ?? 0) > 0) {
                 res.status(409).json({
                     message:
@@ -46,14 +47,20 @@ router.post(
                 return;
             }
 
-            const insert = await db.query<RegisteredUser>(
+            // neuen User anlegen
+            const insertUser = await db.query<RegisteredUser>(
                 `INSERT INTO users (username, email, password)
          VALUES ($1, $2, $3)
          RETURNING id, username, email, created_at AS "createdAt"`,
                 [username, email, password]
             );
+            const newUser = insertUser.rows[0];
 
-            const newUser = insert.rows[0];
+            await db.query(
+                `INSERT INTO shop (player_id, coins)
+         VALUES ($1, $2)`,
+                [newUser.id, 0]
+            );
 
             res.status(201).json({
                 message: "Registrierung erfolgreich",
