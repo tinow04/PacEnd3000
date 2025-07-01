@@ -1,6 +1,6 @@
 // backend/routes/profile.ts
 
-import { Request, Response, Router } from 'express';
+import { Router, Request, Response } from 'express';
 import { db } from '../db/db';
 
 const router = Router();
@@ -22,14 +22,14 @@ interface ErrorResponse {
 router.get(
     '/api/profile',
     async (
-        req: Request<        // <Params, ResBody, ReqBody, ReqQuery>
+        req: Request<
             unknown,
             ProfileResponse | ErrorResponse,
             unknown,
             ProfileQuery
         >,
         res: Response<ProfileResponse | ErrorResponse>
-    ): Promise<void> => {
+    ) => {
         const playerID = req.query.playerID;
         if (!playerID) {
             res.status(400).json({ message: 'playerID fehlt.' });
@@ -55,7 +55,6 @@ router.get(
 
 //
 // POST /api/logout
-// Führt Logout durch (Session/Cookie invalidieren etc.)
 //
 interface LogoutBody {
     playerID?: number;
@@ -66,10 +65,10 @@ router.post(
     async (
         req: Request<unknown, ErrorResponse, LogoutBody>,
         res: Response<ErrorResponse>
-    ): Promise<void> => {
+    ) => {
         const { playerID } = req.body;
         console.log('Logout für playerID', playerID);
-        // TODO: hier ggf. Session löschen oder Cookie invalidieren
+        // TODO: Session/Cookie invalidieren
         res.status(200).json({ message: 'Abmeldung erfolgreich.' });
     }
 );
