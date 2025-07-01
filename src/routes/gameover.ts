@@ -34,7 +34,6 @@ router.post('/api/gameover', async (req: Request<unknown, unknown, GameOverReque
                 [points, playerID]
             );  
             res.status(200).json({ message: 'Daten empfangen und gespeichert.' });
-            console.log('Zeile 17', playerID, points, ghostsEaten, levelsWon, pillsSwallowed);
         } catch (error) {
             console.error(error);
             res.status(500).json({ message: 'Fehler beim Speichern in die Datenbank.' });

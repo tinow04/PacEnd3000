@@ -29,8 +29,8 @@ CREATE TABLE scores (
             ghosts_eaten INT,
             levels_won INT,
             pills_swallowed INT,
-            played_at TIMESTAMP DEFAULT NOW(),
-            time_played INT
+            time_played INT,
+            played_at TIMESTAMP DEFAULT NOW()
 );
 
 INSERT INTO scores (player_id, points, ghosts_eaten, levels_won, pills_swallowed, time_played) VALUES

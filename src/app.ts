@@ -11,7 +11,8 @@ import highscoreRouter from "./routes/mainpage/statistics/highscore"
 import lastScoreRouter from "./routes/mainpage/statistics/lastScore";
 import gamesPlayedRouter from "./routes/mainpage/statistics/gamesPlayed";
 import highestLevelRouter from "./routes/mainpage/statistics/highestLevel";
-
+import totalPlayTimeRouter from "./routes/mainpage/statistics/totalPlayTime";
+import totalGhostsEatenRouter from "./routes/mainpage/statistics/totalGhostsEaten";
 
 const app = express();
 
@@ -30,7 +31,8 @@ app.use(highscoreRouter);
 app.use(lastScoreRouter);
 app.use(gamesPlayedRouter);
 app.use(highestLevelRouter);
-
+app.use(totalPlayTimeRouter);
+app.use(totalGhostsEatenRouter);
 
 app.get("/", (_, res) => {
     res.send("Hello express");
