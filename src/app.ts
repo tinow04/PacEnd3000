@@ -3,9 +3,13 @@ import cors from "cors"
 import loginRouter from "./routes/login"
 import registerRouter from "./routes/register"
 import gameoverRouter from "./routes/gameover"
-import mainpageRouter from "./routes/mainpage";
+import mainpageRouter from "./routes/mainpage/leaderboard";
 import shopRouter from "./routes/shop"
 import profileRouter from "./routes/profile";
+import highscoreRouter from "./routes/mainpage/statistics/highscore"
+import lastScoreRouter from "./routes/mainpage/statistics/lastScore";
+import gamesPlayedRouter from "./routes/mainpage/statistics/gamesPlayed";
+import highestLevelRouter from "./routes/mainpage/statistics/highestLevel";
 
 
 const app = express();
@@ -20,6 +24,10 @@ app.use(gameoverRouter);
 app.use(mainpageRouter)
 app.use(shopRouter);
 app.use(profileRouter);
+app.use(highscoreRouter);
+app.use(lastScoreRouter);
+app.use(gamesPlayedRouter);
+app.use(highestLevelRouter);
 
 
 app.get("/", (_, res) => {

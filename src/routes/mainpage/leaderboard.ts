@@ -1,5 +1,5 @@
 import {Request, Response, Router} from "express";
-import {db} from "../db/db";
+import {db} from "../../db/db";
 
 const router = Router();
 
@@ -36,7 +36,6 @@ router.get('/api/homepage/leaderboard', async (req: Request, res: Response) => {
             [rankIDMinusOne]
         );
 
-        console.log("let playerid = ", playerid);
         playerid = resultPoints.rows[0].player_id;
 
         const resultUsername = await db.query<userDetail>(
@@ -44,7 +43,6 @@ router.get('/api/homepage/leaderboard', async (req: Request, res: Response) => {
             [playerid]
         );
         res.status(200).json({ score: resultPoints.rows[0].points, name: resultUsername.rows[0].username });
-        console.log("Score Nr. ", rankID, " = ", resultPoints.rows[0].points, " by User ", resultPoints.rows[0].player_id)
 
     } catch (error) {
         console.error(error);
