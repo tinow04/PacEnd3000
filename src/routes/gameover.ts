@@ -9,6 +9,7 @@ interface GameOverRequestBody {
     ghostsEaten: number;
     levelsWon: number;
     pillsSwallowed: number;
+    timePlayed: number;
 }
 
 interface HighscoreResult {
@@ -16,16 +17,17 @@ interface HighscoreResult {
 }
 
 router.post('/api/gameover', async (req: Request<unknown, unknown, GameOverRequestBody>, res: Response) => {
-    const { playerID, points, ghostsEaten, levelsWon, pillsSwallowed } = req.body;
+    const { playerID, points, ghostsEaten, levelsWon, pillsSwallowed, timePlayed } = req.body;
     if (playerID !== null && playerID !== undefined &&
         points !== null && points !== undefined &&
         ghostsEaten !== null && ghostsEaten !== undefined &&
         levelsWon !== null && levelsWon !== undefined &&
-        pillsSwallowed !== null && pillsSwallowed !== undefined) {
+        pillsSwallowed !== null && pillsSwallowed !== undefined &&
+        timePlayed !== null && timePlayed !== undefined) {
         try {
             await db.query(
-                'INSERT INTO scores (player_id, points, ghosts_eaten, levels_won, pills_swallowed) VALUES ($1, $2, $3, $4, $5)',
-                [playerID, points, ghostsEaten, levelsWon, pillsSwallowed]
+                'INSERT INTO scores (player_id, points, ghosts_eaten, levels_won, pills_swallowed, time_played) VALUES ($1, $2, $3, $4, $5, $6)',
+                [playerID, points, ghostsEaten, levelsWon, pillsSwallowed, timePlayed]
             );
             await db.query(
                 'UPDATE shop SET coins = coins + $1 WHERE player_id = $2',

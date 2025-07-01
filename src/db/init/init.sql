@@ -29,34 +29,50 @@ CREATE TABLE scores (
             ghosts_eaten INT,
             levels_won INT,
             pills_swallowed INT,
-            played_at TIMESTAMP DEFAULT NOW()
+            played_at TIMESTAMP DEFAULT NOW(),
+            time_played INT
 );
 
-INSERT INTO scores (player_id, points, ghosts_eaten, levels_won, pills_swallowed) VALUES
-            (1, 1520, 9, 3, 120),
-            (1, 2100, 13, 5, 180),
-            (2, 970, 6, 2, 95),
-            (3, 2650, 17, 6, 205),
-            (3, 1100, 7, 3, 103),
-            (4, 1750, 8, 4, 145),
-            (5, 1400, 7, 3, 112),
-            (2, 1980, 11, 4, 160),
-            (4, 2200, 15, 5, 190),
-            (5, 1150, 5, 2, 88),
-            (6, 1340, 6, 3, 100),
-            (6, 1870, 10, 4, 143),
-            (7, 2450, 14, 5, 200),
-            (8, 990, 5, 2, 90),
-            (8, 1580, 9, 3, 130),
-            (9, 1210, 6, 3, 105),
-            (10, 2655, 18, 6, 212),
-            (10, 1430, 7, 3, 117),
-            (11, 1720, 8, 4, 150),
-            (12, 1600, 10, 3, 140);
+INSERT INTO scores (player_id, points, ghosts_eaten, levels_won, pills_swallowed, time_played) VALUES
+            (1, 1520, 9, 3, 120, 0),
+            (1, 2100, 13, 5, 180, 0),
+            (2, 970, 6, 2, 95, 0),
+            (3, 2650, 17, 6, 205, 0),
+            (3, 1100, 7, 3, 103, 0),
+            (4, 1750, 8, 4, 145, 0),
+            (5, 1400, 7, 3, 112, 0),
+            (2, 1980, 11, 4, 160, 0),
+            (4, 2200, 15, 5, 190, 0),
+            (5, 1150, 5, 2, 88, 0),
+            (6, 1340, 6, 3, 100, 0),
+            (6, 1870, 10, 4, 143, 0),
+            (7, 2450, 14, 5, 200, 0),
+            (8, 990, 5, 2, 90, 0),
+            (8, 1580, 9, 3, 130, 0),
+            (9, 1210, 6, 3, 105, 0),
+            (10, 2655, 18, 6, 212, 0),
+            (10, 1430, 7, 3, 117, 0),
+            (11, 1720, 8, 4, 150, 0),
+            (12, 1600, 10, 3, 140, 0);
 
 CREATE TABLE shop (
             player_id INTEGER REFERENCES users(id),
-            coins INT
+            coins INT,
+            skin_1 BOOLEAN DEFAULT FALSE,
+            skin_2 BOOLEAN DEFAULT FALSE,
+            skin_3 BOOLEAN DEFAULT FALSE,
+            skin_4 BOOLEAN DEFAULT FALSE,
+            skin_5 BOOLEAN DEFAULT FALSE,
+            skin_6 BOOLEAN DEFAULT FALSE,
+            skin_7 BOOLEAN DEFAULT FALSE,
+            skin_8 BOOLEAN DEFAULT FALSE,
+            skin_9 BOOLEAN DEFAULT FALSE,
+            skin_10 BOOLEAN DEFAULT FALSE,
+            skin_11 BOOLEAN DEFAULT FALSE,
+            skin_12 BOOLEAN DEFAULT FALSE,
+            skin_13 BOOLEAN DEFAULT FALSE,
+            skin_14 BOOLEAN DEFAULT FALSE,
+            skin_15 BOOLEAN DEFAULT TRUE
 );
 
 INSERT INTO shop (player_id, coins) VALUES

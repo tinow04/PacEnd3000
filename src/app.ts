@@ -4,6 +4,7 @@ import loginRouter from "./routes/login"
 import registerRouter from "./routes/register"
 import gameoverRouter from "./routes/gameover"
 import mainpageRouter from "./routes/mainpage/leaderboard";
+import skinRouter from "./routes/skin";
 import shopRouter from "./routes/shop"
 import profileRouter from "./routes/profile";
 import highscoreRouter from "./routes/mainpage/statistics/highscore"
@@ -23,6 +24,7 @@ app.use(registerRouter);
 app.use(gameoverRouter);
 app.use(mainpageRouter)
 app.use(shopRouter);
+app.use(skinRouter);
 app.use(profileRouter);
 app.use(highscoreRouter);
 app.use(lastScoreRouter);

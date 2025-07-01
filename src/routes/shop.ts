@@ -36,7 +36,7 @@ router.get('/api/shop', async (req: Request, res: Response) => {
 
 router.post('/api/shop', async (req: Request<unknown, unknown, CoinsRequestBody>, res: Response) => {
     const { playerID, coins, price} = req.body;
-    if (!playerID && !coins && !price) {
+    if (!playerID || !coins || !price) {
         res.status(400).json({ message: 'playerID fehlt oder fehlende Daten.' });
         return;
     } else {
