@@ -58,7 +58,7 @@ INSERT INTO scores (player_id, points, ghosts_eaten, levels_won, pills_swallowed
 CREATE TABLE shop (
             player_id INTEGER REFERENCES users(id),
             coins INT,
-            skin_1 BOOLEAN DEFAULT FALSE,
+            skin_1 BOOLEAN DEFAULT TRUE,
             skin_2 BOOLEAN DEFAULT FALSE,
             skin_3 BOOLEAN DEFAULT FALSE,
             skin_4 BOOLEAN DEFAULT FALSE,
@@ -72,7 +72,7 @@ CREATE TABLE shop (
             skin_12 BOOLEAN DEFAULT FALSE,
             skin_13 BOOLEAN DEFAULT FALSE,
             skin_14 BOOLEAN DEFAULT FALSE,
-            skin_15 BOOLEAN DEFAULT TRUE
+            skin_15 BOOLEAN DEFAULT FALSE
 );
 
 INSERT INTO shop (player_id, coins) VALUES
